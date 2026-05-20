@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethan Henry — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --border: #2a2a2a;
+      --accent: #00c8ff;
+      --accent2: #7affb2;
+      --text: #e8e8e8;
+      --muted: #888;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      padding: 40px 20px 80px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      border-left: 3px solid var(--accent);
+      padding: 24px 0 24px 28px;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -3px;
+      width: 3px; height: 100%;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    }
+
+    .name {
+      font-family: var(--mono);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .tagline {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-top: 6px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact {
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+    }
+
+    .contact a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact a:hover { color: var(--accent); }
+
+    /* Sections */
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Summary */
+    .summary {
+      font-size: 0.93rem;
+      color: #ccc;
+      line-height: 1.75;
+      max-width: 720px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 16px;
+      align-items: start;
+      font-size: 0.88rem;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .skill-category {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      padding-top: 1px;
+    }
+
+    .skill-list {
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    /* Experience */
+    .job {
+      padding: 18px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .job::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+
+    .job-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .job-dates {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .job-company {
+      font-size: 0.82rem;
+      color: var(--accent2);
+      margin-bottom: 12px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    .job ul {
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .job li {
+      font-size: 0.875rem;
+      color: #bbb;
+      line-height: 1.55;
+    }
+
+    .job li strong {
+      color: #ddd;
+      font-weight: 600;
+    }
+
+    /* Projects */
+    .project {
+      padding: 18px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent2);
+      opacity: 0.6;
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .project ul {
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .project li {
+      font-size: 0.875rem;
+      color: #bbb;
+      line-height: 1.55;
+    }
+
+    .project li strong {
+      color: #ddd;
+      font-weight: 600;
+    }
+
+    /* Education */
+    .edu-item {
+      font-size: 0.9rem;
+      color: #ccc;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .edu-item strong {
+      color: #fff;
+    }
+
+    .edu-item span {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-left: 8px;
+    }
+
+    /* Footer / counter */
+    footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    #counter {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div class="name">Ethan Henry</div>
+      <div class="tagline">Tier II IT · Network Infrastructure · Cloud</div>
+      <div class="contact">
+        <span>816-877-3604</span>
+        <a href="mailto:Ehenry8607@gmail.com">Ehenry8607@gmail.com</a>
+        <span>Overland Park, KS</span>
+      </div>
+    </header>
+
+    <section>
+      <div class="section-label">Summary</div>
+      <p class="summary">Tier II IT Professional and AAS Networking student with hands-on expertise in network administration, firewall configuration, VLAN segmentation, and enterprise SaaS administration. Proven experience managing Active Directory, Microsoft 365/Entra ID, and a production home lab running a 4-node Proxmox cluster with OPNsense firewall, managed switching, self-hosted infrastructure, and containerized services.</p>
+    </section>
+
+    <section>
+      <div class="section-label">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <div class="skill-category">Virtualization &amp; Containers</div>
+          <div class="skill-list">Proxmox VE (4-node cluster, VMs, LXC), ZFS, Docker, Unraid OS</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-category">Networking &amp; Security</div>
+          <div class="skill-list">OPNsense (firewall, VLAN routing, WAN/LAN segmentation), VLAN configuration (802.1Q trunking, managed switch), Tailscale (mesh VPN), pfSense, Pi-hole (DNS sinkhole), NPMplus/Nginx reverse proxy, CrowdSec IDS</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-category">Systems &amp; Tools</div>
+          <div class="skill-list">Active Directory (GPO, user/device provisioning), Linux (Ubuntu/Debian/Fedora), Windows 10/11</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-category">Scripting &amp; Tools</div>
+          <div class="skill-list">Bash scripting, Git/GitHub, SSH, Wireshark, VOIP</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Professional Experience</div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">Help Desk Technician — Tier II</div>
+          <div class="job-dates">Jan 2025 – Present</div>
+        </div>
+        <div class="job-company">SelectQuote Insurance Services</div>
+        <ul>
+          <li><strong>Microsoft 365 &amp; Entra ID:</strong> Administer user accounts, licensing, and conditional access policies across the M365 tenant via Entra ID (Azure AD)</li>
+          <li><strong>Jamf MDM:</strong> Manage MDM enrollment and configuration for all enterprise macOS devices; perform imaging and remote Jamf agent deployment for onboarding and ongoing device management</li>
+          <li><strong>Adobe Admin Console:</strong> Manage Creative Cloud licensing, product assignments, and user provisioning for the organization</li>
+          <li><strong>AWS Workspaces:</strong> Provision and migrate virtual desktop bundles for international offshore users</li>
+          <li>Enforce Google Admin Console and Chrome Browser Cloud Management policies across the organization</li>
+          <li><strong>Active Directory:</strong> Administer group policies and permissions for enterprise-scale user and device management</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">Help Desk Technician — Tier I</div>
+          <div class="job-dates">Sept 2024 – Jan 2025</div>
+        </div>
+        <div class="job-company">SelectQuote Insurance Services</div>
+        <ul>
+          <li>Resolved hardware and network connectivity issues for 2,000+ remote and on-site users</li>
+          <li>Managed account provisioning and automated laptop imaging for efficient user onboarding</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">IT Support</div>
+          <div class="job-dates">June 2023 – Sept 2024</div>
+        </div>
+        <div class="job-company">Acellus Academy</div>
+        <ul>
+          <li>Diagnosed hardware/software issues for enterprise servers and workstations</li>
+          <li><strong>SOP Development:</strong> Authored Standard Operating Procedures to standardize support tasks and security compliance</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Labs &amp; Technical Projects</div>
+
+      <div class="project">
+        <div class="project-title">Personal Lab — 4-Node Proxmox Cluster</div>
+        <ul>
+          <li><strong>Tailscale (Mesh VPN):</strong> Deployed Tailscale mesh VPN across all Proxmox nodes and LXC containers with ACL-based access control for secure out-of-band remote management of WebGUI, SSH, and services</li>
+          <li><strong>Wazuh (SIEM/IDS):</strong> Deployed Wazuh as a self-hosted SIEM and intrusion detection system, monitoring nodes and services for security events, log aggregation, and threat alerting across the lab environment</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <div class="project-title">Network Infrastructure — OPNsense Gateway &amp; Managed Switching</div>
+        <ul>
+          <li><strong>OPNsense Firewall/Gateway:</strong> Deployed OPNsense as a virtualized gateway configuring WAN/LAN interfaces, DHCP, firewall rules, and NAT for full home lab internet routing and access control</li>
+          <li><strong>VLAN Segmentation:</strong> Designed and implemented 802.1Q VLAN architecture (WAN VLAN 10, LAN VLAN 20) across a TP-Link managed switch with trunk and access port configuration, isolating network segments for security and traffic management</li>
+          <li><strong>Out-of-Band Management:</strong> Configured Tailscale mesh VPN on all Proxmox nodes as out-of-band access layer, enabling secure remote console and management access independent of primary network availability</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Education &amp; Certifications</div>
+      <div class="edu-item"><strong>AAS in Networking</strong> — Johnson County Community College<span>Expected May 2027</span></div>
+      <div class="edu-item"><strong>Google Cybersecurity Professional Certificate</strong> — Coursera</div>
+    </section>
+
+    <footer>
+      <p>Visitors: <span id="counter">Loading...</span></p>
+    </footer>
+
+  </div>
+  <script src="counter.js"></script>
+</body>
+</html>
